@@ -1,6 +1,8 @@
 package jensen;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Random;
 import java.util.Scanner;
 
 /*@author savio*/
@@ -21,11 +23,26 @@ public class Jensen {
         
         TransacaoManager tm = new TransacaoManager(nro_itens, nro_transacoes, nro_acessos);
         
-        ArquivoManager.gravarArquivoTransacao(tm);
+        //ArquivoManager.gravarArquivoTransacao(tm);
         
         System.out.println(tm);
         
-        System.out.println(ArquivoManager.lerArquivoTransacao());
+        LinkedList<String[]> list = ArquivoManager.lerArquivoTransacao();
+        Random r = new Random();
+        
+        while( !list.isEmpty() ){
+        	int n = r.nextInt(list.size());
+        	System.out.println(list.get(n));
+        	list.removeFirst();
+        }
+        
+        for( String[] sl : list ){
+        	for( String s : sl ){
+        		System.out.print(s);
+        		System.out.print("");
+        	}
+        	System.out.println();
+        }
          
     }
 }

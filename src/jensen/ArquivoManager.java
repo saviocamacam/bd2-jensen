@@ -16,6 +16,8 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -47,15 +49,23 @@ public class ArquivoManager {
 	   
    }
    
-   public static List<String> lerArquivoTransacao(){
+   public static LinkedList<String[]> lerArquivoTransacao(){
+	   LinkedList<String[]> transacoes = new LinkedList<>();
 	   List<String> linhas = new ArrayList<>();
 	   try {
 		linhas = Files.readAllLines(Paths.get("arquivoTransacao.txt", ""));
+		linhas.remove(0);
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	   return linhas;
+	   
+	   for( String s : linhas ){
+		 String[] t = s.substring(3).split(" ");
+		 transacoes.add(t);
+	   }
+	   
+	   return transacoes;
    }
    
  }
