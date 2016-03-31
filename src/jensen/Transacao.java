@@ -3,46 +3,48 @@ package jensen;
 
 import java.util.LinkedList;
 import java.util.Random;
-import java.util.stream.LongStream;
+import java.util.stream.IntStream;
 /*@author savio*/
 
 public class Transacao {
-    LinkedList<String> filaOperacoes;
+	private String labelTransacao;
+    private LinkedList<Operacao> filaOperacoes;
     
     private static int index=0;
 
     public Transacao(ItemDado dados, int numeroAcessos) {
     	index++;
         filaOperacoes = new LinkedList<>();
-        filaOperacoes.add("T" + index + ": " + Comando.START.texto + index + "; ");
+        labelTransacao = "T" + index + ":";
+        filaOperacoes.add(new Operacao(Acesso.START, index));
         randomOp(filaOperacoes, dados.getDados(), numeroAcessos);
-        filaOperacoes.add(Comando.END.texto + index + ";");
+        filaOperacoes.add(new Operacao(Acesso.END, index));
 
 	}
 
-	private void randomOp(LinkedList<String> fila, LinkedList<String> conjunto, int nro_acessos) {
+	private void randomOp(LinkedList<Operacao> filaOperacoes, LinkedList<String> conjunto, int nro_acessos) {
         int tamanhoConjunto = conjunto.size();
-        long[] vetorPosicoes;
-        long[] vetorAcessos;
+        int[] vetorPosicoes;
+        int[] vetorAcessos;
         int cursor = 0;
         
         Random posAleatorias = new Random();
-        LongStream streamPosicoes = posAleatorias.longs(nro_acessos, 0, tamanhoConjunto);
+        IntStream streamPosicoes = posAleatorias.ints(nro_acessos, 0, tamanhoConjunto);
         vetorPosicoes = streamPosicoes.toArray();
         
         Random acessosaleatorios = new Random();
-        LongStream streamAcessos = acessosaleatorios.longs(nro_acessos, 0, 2);
+        IntStream streamAcessos = acessosaleatorios.ints(nro_acessos, 0, 2);
         vetorAcessos = streamAcessos.toArray();
         
         while(cursor < nro_acessos) {
-            long operacao = vetorAcessos[cursor];
-            long posDado = vetorPosicoes[cursor];
+            int operacao = vetorAcessos[cursor];
+            int posDado = vetorPosicoes[cursor];
             
             if(operacao == 0) {
-                fila.add(Comando.READ.texto + index + "("+ conjunto.get((int) posDado)+"); ");
+                filaOperacoes.add(new Operacao(conjunto.get(posDado), Acesso.READ, index));
             }
             else if (operacao == 1) {
-                fila.add(Comando.WRITE.texto + index + "("+ conjunto.get((int) posDado)+"); ");
+            	filaOperacoes.add(new Operacao(conjunto.get(posDado), Acesso.WRITE, index));;
             }
             cursor++;
         }
@@ -51,9 +53,11 @@ public class Transacao {
 	@Override
 	public String toString() {
 		String transacao = "";
-		for( String s : filaOperacoes ){
-			transacao = transacao + s;
+		transacao += labelTransacao;
+		for( Operacao op : filaOperacoes ){
+			transacao += " " + op;
 		}
+		
 		transacao = transacao + '\n';
 		return transacao;
 	}
