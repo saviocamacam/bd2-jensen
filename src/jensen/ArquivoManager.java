@@ -5,6 +5,7 @@
  */
 package jensen;
 
+
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,6 +13,11 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /*@author savio*/
 public class ArquivoManager {
@@ -40,4 +46,16 @@ public class ArquivoManager {
 	}
 	   
    }
-}
+   
+   public static List<String> lerArquivoTransacao(){
+	   List<String> linhas = new ArrayList<>();
+	   try {
+		linhas = Files.readAllLines(Paths.get("arquivoTransacao.txt", ""));
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	   return linhas;
+   }
+   
+ }

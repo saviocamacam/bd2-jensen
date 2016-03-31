@@ -24,6 +24,8 @@ public class Jensen {
         ArquivoManager.gravarArquivoTransacao(tm);
         
         System.out.println(tm);
+        
+        System.out.println(ArquivoManager.lerArquivoTransacao());
          
     }
 }

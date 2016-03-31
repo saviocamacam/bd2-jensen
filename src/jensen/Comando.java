@@ -9,6 +9,7 @@ public enum Comando {
     END("E"),
     COMMIT("C"),
     ABORT("A");
+	
     String texto;
 
     private Comando(String texto) {
