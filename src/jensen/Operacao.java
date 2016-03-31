@@ -2,7 +2,7 @@
 package jensen;
 /*@author savio*/
 
-public enum Comando {
+public enum Operacao {
     READ("R"),
     WRITE("W"),
     START("S"),
@@ -12,7 +12,7 @@ public enum Comando {
 	
     String texto;
 
-    private Comando(String texto) {
+    private Operacao(String texto) {
         this.texto = texto;
     }
 

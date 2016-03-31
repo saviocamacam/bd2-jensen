@@ -14,9 +14,9 @@ public class Transacao {
     public Transacao(ItemDado dados, int numeroAcessos) {
     	index++;
         filaOperacoes = new LinkedList<>();
-        filaOperacoes.add("T" + index + ": " + Comando.START.texto + index + "; ");
+        filaOperacoes.add("T" + index + ": " + Operacao.START.texto + index + "; ");
         randomOp(filaOperacoes, dados.getDados(), numeroAcessos);
-        filaOperacoes.add(Comando.END.texto + index + ";");
+        filaOperacoes.add(Operacao.END.texto + index + ";");
 
 	}
 
@@ -39,10 +39,10 @@ public class Transacao {
             long posDado = vetorPosicoes[cursor];
             
             if(operacao == 0) {
-                fila.add(Comando.READ.texto + index + "("+ conjunto.get((int) posDado)+"); ");
+                fila.add(Operacao.READ.texto + index + "("+ conjunto.get((int) posDado)+"); ");
             }
             else if (operacao == 1) {
-                fila.add(Comando.WRITE.texto + index + "("+ conjunto.get((int) posDado)+"); ");
+                fila.add(Operacao.WRITE.texto + index + "("+ conjunto.get((int) posDado)+"); ");
             }
             cursor++;
         }
