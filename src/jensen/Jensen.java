@@ -11,14 +11,14 @@ public class Jensen {
     
     public static void main(String[] args) throws IOException {
         
-    	System.out.println("Informe: \n número de itens de dados: ");
+    	System.out.println("Informe: \n nï¿½mero de itens de dados: ");
         
     	int nro_itens = new Scanner(System.in).nextInt();
         
-        System.out.println("número de transacoes: ");
+        System.out.println("nï¿½mero de transacoes: ");
         int nro_transacoes = new Scanner(System.in).nextInt();
         
-        System.out.println("número de acessos: ");
+        System.out.println("nï¿½mero de acessos: ");
         int nro_acessos = new Scanner(System.in).nextInt();
         
         TransacaoManager tm = new TransacaoManager(nro_itens, nro_transacoes, nro_acessos);

@@ -1,24 +1,47 @@
-
 package jensen;
 /*@author savio*/
 
-public enum Operacao {
-    READ("R"),
-    WRITE("W"),
-    START("S"),
-    END("E"),
-    COMMIT("C"),
-    ABORT("A");
+
+public class Operacao {
 	
-    String texto;
+	private String dado;
+	private Acesso acesso;
+	private int index;
+	
+	public Operacao(String dado, Acesso acesso, int index) {
+		this.dado = dado;
+		this.acesso = acesso;
+		this.index = index;
+	}
+	
+	public Operacao(Acesso acesso, int index){
+		this.dado = null;
+		this.acesso = acesso;
+		this.index = index;
+	}
 
-    private Operacao(String texto) {
-        this.texto = texto;
-    }
+	public String getDado() {
+		return dado;
+	}
 
-    @Override
-    public String toString() {
-        return texto;
-    }
-    
+	public Acesso getAcesso() {
+		return acesso;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	@Override
+	public String toString() {
+		String operacao = "";
+		operacao += acesso.toString() + index;
+		if( dado != null )
+			operacao += "(" + dado + ");";
+		else
+			operacao += ";";
+		
+		return operacao;
+	}
+	
 }
