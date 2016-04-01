@@ -20,6 +20,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.sun.javafx.css.converters.StringConverter;
+
 
 /*@author savio*/
 public class ArquivoManager {
@@ -49,8 +51,8 @@ public class ArquivoManager {
 	   
    }
    
-   public static LinkedList<String[]> lerArquivoTransacao(){
-	   LinkedList<String[]> transacoes = new LinkedList<>();
+   public static LinkedList<Transacao> lerArquivoTransacao(){
+	   LinkedList<Transacao> transacoes = new LinkedList<>();
 	   List<String> linhas = new ArrayList<>();
 	   try {
 		linhas = Files.readAllLines(Paths.get("arquivoTransacao.txt", ""));
@@ -61,8 +63,43 @@ public class ArquivoManager {
 	}
 	   
 	   for( String s : linhas ){
-		 String[] t = s.substring(3).split(" ");
-		 transacoes.add(t);
+		 transacoes.add(new Transacao());
+		 String[] temp = s.substring(3).split(" ");
+		 for( String opString : temp){
+			 Operacao op = null;
+			 Acesso acesso = null;
+			 int index = 0;
+			 
+			 // verifica se start_ ou end_transaction
+			 if ( opString.length() == 3) {
+				 if ( opString.contains("S")) {
+					 acesso = Acesso.START;
+				 } else {
+					 acesso = Acesso.END;
+				 }
+				op = new Operacao(acesso, Integer.parseInt(opString.substring(1, 2)));
+			 } else if( opString.length() > 3 ) {
+				
+				switch ( opString.substring(0, 1) ) {
+				case "R":
+					acesso = Acesso.READ;
+					break;
+				case "W":
+					acesso = Acesso.WRITE;
+				default:
+					break;
+				}
+				
+				index = Integer.parseInt(opString.substring(1, 2));
+				String dado = opString.substring(3, 4);
+				op = new Operacao( dado , acesso, index );
+			 }
+			 
+			 if( op != null){
+				 transacoes.getLast().addOperacao(op);
+			 }
+				 
+		 }
 	   }
 	   
 	   return transacoes;

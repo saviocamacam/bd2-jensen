@@ -11,8 +11,14 @@ public class Transacao {
     private LinkedList<Operacao> filaOperacoes;
     
     private static int index=0;
+    
+    public Transacao() {
+		super();
+		filaOperacoes = new LinkedList<>();
+		labelTransacao += "T";
+	}
 
-    public Transacao(ItemDado dados, int numeroAcessos) {
+	public Transacao(ItemDado dados, int numeroAcessos) {
     	index++;
         filaOperacoes = new LinkedList<>();
         labelTransacao = "T" + index + ":";
@@ -50,6 +56,14 @@ public class Transacao {
             cursor++;
         }
     }
+	
+	public void addOperacao(Operacao novaOp){
+		filaOperacoes.add(novaOp);
+	}
+	
+	public void setLabelTransacao(String index) {
+		this.labelTransacao += index + ":";
+	}
 
 	@Override
 	public String toString() {

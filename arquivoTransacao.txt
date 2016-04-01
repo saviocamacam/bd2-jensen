@@ -1,10 +1,7 @@
 3,3,3
-<<<<<<< HEAD
 T1: S1; R1(B); R1(B); R1(A); E1;
 T2: S2; R2(C); W2(C); R2(A); E2;
 T3: S3; R3(C); W3(C); W3(A); E3;
-=======
 T1: S1; R1(A); W1(A); R1(A); E1;
 T2: S2; R2(A); W2(B); R2(B); E2;
 T3: S3; W3(B); W3(A); R3(B); E3;
->>>>>>> refs/remotes/origin/HEAD

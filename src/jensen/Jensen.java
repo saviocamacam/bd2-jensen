@@ -11,14 +11,14 @@ public class Jensen {
     
     public static void main(String[] args) throws IOException {
         
-    	System.out.println("Informe: \n n�mero de itens de dados: ");
+    	System.out.println("Informe: \n número de itens de dados: ");
         
     	int nro_itens = new Scanner(System.in).nextInt();
         
-        System.out.println("n�mero de transacoes: ");
+        System.out.println("número de transacoes: ");
         int nro_transacoes = new Scanner(System.in).nextInt();
         
-        System.out.println("n�mero de acessos: ");
+        System.out.println("número de acessos: ");
         int nro_acessos = new Scanner(System.in).nextInt();
         
         TransacaoManager tm = new TransacaoManager(nro_itens, nro_transacoes, nro_acessos);
@@ -27,22 +27,16 @@ public class Jensen {
         
         System.out.println(tm);
         
-        LinkedList<String[]> list = ArquivoManager.lerArquivoTransacao();
+        LinkedList<Transacao> list = ArquivoManager.lerArquivoTransacao();
         Random r = new Random();
+        
+        System.out.println(list);
         
         while( !list.isEmpty() ){
         	int n = r.nextInt(list.size());
-        	System.out.println(list.get(n));
+        	if(list.get(n) != null )
+        		System.out.println(list.get(n));
         	list.removeFirst();
-        }
-        
-        for( String[] sl : list ){
-        	for( String s : sl ){
-        		System.out.print(s);
-        		System.out.print("");
-        	}
-        	System.out.println();
-        }
-         
+        }      
     }
 }
