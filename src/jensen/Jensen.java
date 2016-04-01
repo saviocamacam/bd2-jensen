@@ -23,20 +23,25 @@ public class Jensen {
         
         TransacaoManager tm = new TransacaoManager(nro_itens, nro_transacoes, nro_acessos);
         
-        //ArquivoManager.gravarArquivoTransacao(tm);
+        ArquivoManager.gravarArquivoTransacao(tm);
         
         System.out.println(tm);
         
         LinkedList<Transacao> list = ArquivoManager.lerArquivoTransacao();
         Random r = new Random();
         
-        System.out.println(list);
+        ArquivoManager.gravarSchedule(list, nro_itens, nro_transacoes, nro_acessos);
         
-        while( !list.isEmpty() ){
+   //     System.out.println(list);
+        
+/*        while( !list.isEmpty() ){
         	int n = r.nextInt(list.size());
-        	if(list.get(n) != null )
-        		System.out.println(list.get(n));
-        	list.removeFirst();
-        }      
+        	if(!list.get(n).transIsEmpty()) {
+        		System.out.println(list.get(n).getFirstOp());
+        		list.get(n).removeOp();
+        	} else {
+        		list.remove(n);
+        	}
+        } */     
     }
 }

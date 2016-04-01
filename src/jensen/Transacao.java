@@ -61,8 +61,21 @@ public class Transacao {
 		filaOperacoes.add(novaOp);
 	}
 	
+	public void removeOp() {
+		filaOperacoes.removeFirst();
+	}
+	
 	public void setLabelTransacao(String index) {
 		this.labelTransacao += index + ":";
+	}
+	
+	public boolean transIsEmpty(){
+		return filaOperacoes.isEmpty();
+		
+	}
+	
+	public Operacao getFirstOp() {
+		return filaOperacoes.getFirst();
 	}
 
 	@Override

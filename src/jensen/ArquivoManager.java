@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
-import com.sun.javafx.css.converters.StringConverter;
 
 
 /*@author savio*/
@@ -48,6 +48,36 @@ public class ArquivoManager {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	   
+   }
+   
+   public static void gravarSchedule(LinkedList<Transacao> list, int itemdado, int transacoes, int acessos) {
+	   try {
+		writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("arquivoSchedule.txt"), "utf-8"));
+		Random r = new Random();
+		writer.write(itemdado +", "+ transacoes + ", " + acessos + "\n");
+		   while( !list.isEmpty() ){
+	       	int n = r.nextInt(list.size());
+	       	if(!list.get(n).transIsEmpty()) {
+	       		writer.write(list.get(n).getFirstOp().toString());
+	       		list.get(n).removeOp();
+	       	} else {
+	       		list.remove(n);
+	       	}
+		   }
+		   
+		   writer.close();
+	} catch (UnsupportedEncodingException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	   
 	   
    }
    
