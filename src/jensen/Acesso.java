@@ -1,4 +1,4 @@
-
+/*Classe responsávelo pela retorno dos tipos de acessos*/
 package jensen;
 /*@author savio*/
 

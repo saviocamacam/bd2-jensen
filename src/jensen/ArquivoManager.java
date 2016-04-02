@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Classe responsável pela gravação e leitura de arquivos
  */
 package jensen;
 
@@ -31,7 +29,8 @@ public class ArquivoManager {
 	public ArquivoManager() {
         
     }
-    
+	
+	//Método de gravação das transações no arquivo
    public static void gravarArquivoTransacao(TransacaoManager tm){
 	   try {
 		writer = new BufferedWriter(
@@ -50,37 +49,27 @@ public class ArquivoManager {
 	}
 	   
    }
-   
-   public static void gravarSchedule(LinkedList<Transacao> list, int itemdado, int transacoes, int acessos) {
+   //Método de gravação do schedule gerado
+   public static void gravarSchedule(Schedule s) {
 	   try {
 		writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("arquivoSchedule.txt"), "utf-8"));
-		Random r = new Random();
-		writer.write(itemdado +", "+ transacoes + ", " + acessos + "\n");
-		   while( !list.isEmpty() ){
-	       	int n = r.nextInt(list.size());
-	       	if(!list.get(n).transIsEmpty()) {
-	       		writer.write(list.get(n).getFirstOp().toString());
-	       		list.get(n).removeOp();
-	       	} else {
-	       		list.remove(n);
-	       	}
-		   }
+		writer.write(s.getItemdado() +", "+ s.getTransacao()+ ", " + s.getAcesso()+ "\n");
+	    writer.write(s.toString());   
+		writer.close();
 		   
-		   writer.close();
 	} catch (UnsupportedEncodingException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
+		
 	} catch (FileNotFoundException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
+		
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	   
 	   
    }
-   
+   //Método de leitura do arquivo de transações que retorna uma lista linkada de transacoes
    public static LinkedList<Transacao> lerArquivoTransacao(){
 	   LinkedList<Transacao> transacoes = new LinkedList<>();
 	   List<String> linhas = new ArrayList<>();
@@ -88,7 +77,6 @@ public class ArquivoManager {
 		linhas = Files.readAllLines(Paths.get("arquivoTransacao.txt", ""));
 		linhas.remove(0);
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	   

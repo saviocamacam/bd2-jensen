@@ -12,7 +12,7 @@ public class ItemDado {
         dados = new LinkedList<>();
         geradorDado(dados, nro_dados);
     }
-    
+    //Método de geração dos itens de dados, suporta itens alfanumericos
     private void geradorDado(LinkedList<String> conjunto_dados, int nro_dados) {
         byte[] cont = {65};
         

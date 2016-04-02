@@ -28,7 +28,7 @@ public class Transacao {
         filaOperacoes.add(new Operacao(Acesso.END, index));
 
 	}
-
+	
 	private void randomOp(LinkedList<Operacao> filaOperacoes, LinkedList<String> conjunto, int nro_acessos) {
         int tamanhoConjunto = conjunto.size();
         int[] vetorPosicoes;
