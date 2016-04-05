@@ -1,3 +1,6 @@
+/* Essa classe recebe os parâmetros gerais de criação de transações
+ * 
+ */
 package jensen;
 
 import java.util.LinkedList;
@@ -24,7 +27,6 @@ public class TransacaoManager {
 			numeroTransacoes--;
 		}
 	}
-
 
 	@Override
 	public String toString() {

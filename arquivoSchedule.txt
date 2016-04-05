@@ -1,2 +1,2 @@
-26, 3, 10
-S1; S2; S3; W1(O); R1(A); W2(Y); R1(R); W2(C); R1(W); R1(E); W3(D); W2(E); W1(S); R1(D); W2(N); W3(I); W1(W); R1(K); W1(C); R2(C); E1; W3(C); W2(B); R3(J); R2(R); R2(X); R2(E); R3(W); W2(W); R3(I); E2; R3(M); R3(D); R3(Y); R3(X); E3; 
+4, 3, 3
+S2; S3; R3(D); R2(C); R3(B); S1; W2(D); R1(B); R3(C); W1(C); W2(B); W1(D); E3; E1; E2; 
