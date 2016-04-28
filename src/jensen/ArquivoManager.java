@@ -23,7 +23,6 @@ import java.util.Random;
 
 /*@author savio*/
 public class ArquivoManager {
-	
     private static Writer writer;
 
 	public ArquivoManager() {
@@ -54,7 +53,7 @@ public class ArquivoManager {
 	   try {
 		writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("arquivoSchedule.txt"), "utf-8"));
 		writer.write(s.getItemdado() +", "+ s.getTransacao()+ ", " + s.getAcesso()+ "\n");
-	    writer.write(s.toString());   
+	    writer.write(s.toString());
 		writer.close();
 		   
 	} catch (UnsupportedEncodingException e) {
