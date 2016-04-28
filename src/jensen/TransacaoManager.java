@@ -7,20 +7,20 @@ import java.util.LinkedList;
 
 public class TransacaoManager {
 		
-	ItemDado dados;
+	ListaDados dados;
     LinkedList<Transacao> listaTransacoes;
     int numeroAcessos;
 	
 	
 	public TransacaoManager( int numeroDados, int numeroTransacoes, int numeroAcessos) {
-		dados = new ItemDado(numeroDados);
+		dados = new ListaDados(numeroDados);
 		listaTransacoes = new LinkedList<>();
 		this.numeroAcessos = numeroAcessos;
 		createTransacoes(dados, numeroTransacoes, numeroAcessos);	
 	}
 
 
-	private void createTransacoes(ItemDado dados, int numeroTransacoes, int numeroAcessos) {
+	private void createTransacoes(ListaDados dados, int numeroTransacoes, int numeroAcessos) {
 		
 		while( numeroTransacoes > 0 ) {
 			listaTransacoes.add(new Transacao(dados, numeroAcessos));

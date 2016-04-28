@@ -5,20 +5,20 @@ import java.util.LinkedList;
 
 /*@author savio*/
 
-public class ItemDado {
-    private LinkedList<String> dados;
+public class ListaDados {
+    private LinkedList<Dado> dados;
     
-    public ItemDado(int nro_dados) {
+    public ListaDados(int nro_dados) {
         dados = new LinkedList<>();
         geradorDado(dados, nro_dados);
     }
     //Método de geração dos itens de dados, suporta itens alfanumericos
-    private void geradorDado(LinkedList<String> conjunto_dados, int nro_dados) {
+    private void geradorDado(LinkedList<Dado> dados2, int nro_dados) {
         byte[] cont = {65};
         
         while(nro_dados > 0){
            String dado = new String(cont);
-            conjunto_dados.add(dado);
+            dados2.add(new Dado(dado));
             nro_dados--;
             cont[0]++;
         }
@@ -29,7 +29,7 @@ public class ItemDado {
         return "ItemDado{" + "dados=" + dados + '}';
     }
 
-    public LinkedList<String> getDados() {
+    public LinkedList<Dado> getDados() {
         return dados;
     }
   

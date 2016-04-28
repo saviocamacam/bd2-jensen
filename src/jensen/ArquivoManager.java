@@ -139,5 +139,18 @@ public class ArquivoManager {
 	}
 	return temp;
    }
+
+public static LinkedList<Operacao> lerArquivoSchedule(String nomeArquivo) {
+	LinkedList<Operacao> operacoes = new LinkedList<>();
+	List<String> linhas = new ArrayList<>();
+	try {
+		linhas = Files.readAllLines(Paths.get(nomeArquivo+".txt", ""));
+		
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	
+	return null;
+}
    
  }

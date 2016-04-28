@@ -18,7 +18,7 @@ public class Transacao {
 		labelTransacao += "T";
 	}
 
-	public Transacao(ItemDado dados, int numeroAcessos) {
+	public Transacao(ListaDados dados, int numeroAcessos) {
     	index++;
         filaOperacoes = new LinkedList<>();
         labelTransacao = "T" + index + ":";
@@ -29,7 +29,7 @@ public class Transacao {
 
 	}
 	
-	private void randomOp(LinkedList<Operacao> filaOperacoes, LinkedList<String> conjunto, int nro_acessos) {
+	private void randomOp(LinkedList<Operacao> filaOperacoes, LinkedList<Dado> conjunto, int nro_acessos) {
         int tamanhoConjunto = conjunto.size();
         int[] vetorPosicoes;
         int[] vetorAcessos;
@@ -48,10 +48,10 @@ public class Transacao {
             int posDado = vetorPosicoes[cursor];
             
             if(operacao == 0) {
-                filaOperacoes.add(new Operacao(conjunto.get(posDado), Acesso.READ, index));
+                filaOperacoes.add(new Operacao(conjunto.get(posDado).getNome(), Acesso.READ, index));
             }
             else if (operacao == 1) {
-            	filaOperacoes.add(new Operacao(conjunto.get(posDado), Acesso.WRITE, index));
+            	filaOperacoes.add(new Operacao(conjunto.get(posDado).getNome(), Acesso.WRITE, index));
             }
             cursor++;
         }

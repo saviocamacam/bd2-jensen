@@ -51,7 +51,9 @@ public class Jensen {
     			 * Com isso é criado um schedule como um conjunto aleatorio de operações extraídas das operações segundo sua ordem
     			 * Depois de gerado o schedule sorteado é feita a gravação com método da classe de gerenciamento de arquivos */
     		} else if (opcao == 3) {
-    			
+    			System.out.println("Nome do arquivo de Schedule (fonte):");
+    			nomeArquivo = new Scanner(System.in).next();
+    			LinkedList<Operacao> list = ArquivoManager.lerArquivoSchedule(nomeArquivo);
     			
     		}
     		
