@@ -9,7 +9,9 @@ public class Schedule {
 	private int transacao;
 	private int acesso;
 	
-	public Schedule(LinkedList<Transacao> transacao) {		
+	public Schedule(String nomeArquivo) {
+		
+		LinkedList<Transacao> transacao = ArquivoManager.lerArquivoTransacao(nomeArquivo);
 		scheduleinlist = new LinkedList<>();
 		ligaOperacoes(transacao);
 	}
@@ -57,5 +59,9 @@ public class Schedule {
 			str += op.toString() + " ";
 		}
 		return str;
+	}
+
+	public void setScheduleinlist(LinkedList<Operacao> scheduleinlist) {
+		this.scheduleinlist = scheduleinlist;
 	}
 }

@@ -38,13 +38,14 @@ public class Jensen {
     		} else if (opcao == 2) {
     			System.out.println("Nome do arquivo de Transações (fonte)");
     			nomeArquivo = new Scanner(System.in).next();
-    			LinkedList<Transacao> list = ArquivoManager.lerArquivoTransacao(nomeArquivo);
-    			System.out.println("Nome do arquivo de Schedule (destino)");
-    			Schedule s = new Schedule(list);
-    			
+    			Schedule s = new Schedule(nomeArquivo);
     			s.cabecalho(ArquivoManager.getCabecalho(nomeArquivo));
     			
+    			//LinkedList<Transacao> list = ArquivoManager.lerArquivoTransacao(nomeArquivo);
+    			
+    			System.out.println("Nome do arquivo de Schedule (destino)");
     			nomeArquivo = new Scanner(System.in).next();
+    			
     			ArquivoManager.gravarSchedule(s, nomeArquivo);
     	        
     			/* Método da classe ArquivoManager ler o arquivo retornando uma lista linkada de Transações, onde cada transação é uma lista de operações
@@ -53,7 +54,12 @@ public class Jensen {
     		} else if (opcao == 3) {
     			System.out.println("Nome do arquivo de Schedule (fonte):");
     			nomeArquivo = new Scanner(System.in).next();
+    			
     			LinkedList<Operacao> list = ArquivoManager.lerArquivoSchedule(nomeArquivo);
+    		
+    			Schedule s = new Schedule(nomeArquivo);
+    			s.setScheduleinlist(list);
+    			s.cabecalho(ArquivoManager.getCabecalho(nomeArquivo));
     			
     		}
     		

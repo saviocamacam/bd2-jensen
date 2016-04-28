@@ -72,7 +72,6 @@ public class ArquivoManager {
 	   List<String> linhas = new ArrayList<>();
 	   try {
 		linhas = Files.readAllLines(Paths.get(nomeArquivo+".txt", ""));
-				
 		linhas.remove(0);
 	} catch (IOException e) {
 		e.printStackTrace();
@@ -134,23 +133,47 @@ public class ArquivoManager {
 		linha = Files.readAllLines(Paths.get(nomeArquivo+".txt", ""));
 		temp = linha.get(0);
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	return temp;
    }
 
-public static LinkedList<Operacao> lerArquivoSchedule(String nomeArquivo) {
-	LinkedList<Operacao> operacoes = new LinkedList<>();
-	List<String> linhas = new ArrayList<>();
-	try {
-		linhas = Files.readAllLines(Paths.get(nomeArquivo+".txt", ""));
+	public static LinkedList<Operacao> lerArquivoSchedule(String nomeArquivo) {
+		LinkedList<Operacao> operacoes = new LinkedList<>();
+		List<String> linhas = new ArrayList<>();
+		try {
+			linhas = Files.readAllLines(Paths.get(nomeArquivo+".txt", ""));
+			linhas.remove(0);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-	} catch (IOException e) {
-		e.printStackTrace();
+		String[] vectOperacoes = linhas.get(1).substring(0).split(" ");
+		for(String s : vectOperacoes) {
+			Operacao op = null;
+			Acesso acesso = null;
+			int index = 0;
+			
+			switch( s.charAt(0)) {
+			case 'R':
+				acesso = Acesso.READ;
+				break;
+			case 'W':
+				acesso = Acesso.WRITE;
+			default:
+				break;
+			}
+			int indiceParentese = s.indexOf('(');
+			index = Integer.parseInt(s.substring(1, indiceParentese));
+			
+			int indiceParenteseFecha = s.indexOf(')');
+			
+			String dado = s.substring(indiceParentese+1, indiceParenteseFecha);
+			op = new Operacao( dado , acesso, index );
+			operacoes.add(op);
+		}
+		
+		return null;
 	}
-	
-	return null;
-}
    
  }
