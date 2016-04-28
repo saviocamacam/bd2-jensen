@@ -31,7 +31,7 @@ public class TransacaoManager {
 	@Override
 	public String toString() {
 		String tmString = "";
-		tmString =  dados.getDados().size() + "," + listaTransacoes.size() + "," + numeroAcessos + "\n";
+		tmString =  dados.getDados().size() + ", " + listaTransacoes.size() + ", " + numeroAcessos + "\n";
 		for( Transacao t : listaTransacoes ){
 			tmString += t;
 		}

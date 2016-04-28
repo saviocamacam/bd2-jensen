@@ -10,6 +10,7 @@ public class Jensen {
     static int nro_itens;
     static int nro_transacoes;
     static int nro_acessos;
+    static String nomeArquivo;
     //Necessário ainda criar métodos de reset ao final de entradas e geração de schedules
     public static void main(String[] args) throws IOException {
     	do {
@@ -28,16 +29,23 @@ public class Jensen {
     	        nro_acessos = new Scanner(System.in).nextInt();
     	        
     	        TransacaoManager tm = new TransacaoManager(nro_itens, nro_transacoes, nro_acessos);
+    	        System.out.println("Nome do arquivo de Transações (destino)");
+    	        nomeArquivo = new Scanner(System.in).next();
     	        
-    	        ArquivoManager.gravarArquivoTransacao(tm);
+    	        ArquivoManager.gravarArquivoTransacao(tm, nomeArquivo);
     	        /* Os parâmetros do usuário são enviados para a classe TransacaoManager que gerencia a criação de transações retornando uma listas delas.
     	         * Depois disso há a gravação com método implementado pela classe ArquivoManager. */
     	    	
     		} else if (opcao == 2) {
-    			LinkedList<Transacao> list = ArquivoManager.lerArquivoTransacao();
-    	        
-    			Schedule s = new Schedule(list, nro_itens, nro_transacoes, nro_acessos);
-    			ArquivoManager.gravarSchedule(s);
+    			System.out.println("Nome do arquivo de Transações (fonte)");
+    			nomeArquivo = new Scanner(System.in).next();
+    			LinkedList<Transacao> list = ArquivoManager.lerArquivoTransacao(nomeArquivo);
+    			System.out.println("Nome do arquivo de Schedule (destino)");
+    			Schedule s = new Schedule(list);
+    			s.cabecalho(ArquivoManager.getCabecalho(nomeArquivo));
+    			
+    			nomeArquivo = new Scanner(System.in).next();
+    			ArquivoManager.gravarSchedule(s, nomeArquivo);
     	        
     			/* Método da classe ArquivoManager ler o arquivo retornando uma lista linkada de Transações, onde cada transação é uma lista de operações
     			 * Com isso é criado um schedule como um conjunto aleatorio de operações extraídas das operações segundo sua ordem

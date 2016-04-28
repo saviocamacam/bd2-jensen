@@ -9,11 +9,7 @@ public class Schedule {
 	private int transacao;
 	private int acesso;
 	
-	public Schedule(LinkedList<Transacao> transacao, int itemDado, int nroTransacao, int acesso) {
-		this.itemdado = itemDado;
-		this.transacao = nroTransacao;
-		this.acesso = acesso;
-		
+	public Schedule(LinkedList<Transacao> transacao) {		
 		scheduleinlist = new LinkedList<>();
 		ligaOperacoes(transacao);
 	}
@@ -29,6 +25,14 @@ public class Schedule {
 	       		listaTransacao.remove(n);
 	       	}
 		   }
+	}
+	
+	public void cabecalho(String linha0) {
+		int indiceBarraN = linha0.indexOf('\n');
+		String[] temp2 = linha0.substring(0).split(", ");
+		this.acesso = Integer.parseInt(temp2[2].toString());
+		this.itemdado = Integer.parseInt(temp2[0].toString());
+		this.transacao = Integer.parseInt(temp2[1].toString());
 	}
 
 	public LinkedList<Operacao> getScheduleinlist() {

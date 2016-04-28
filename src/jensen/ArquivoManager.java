@@ -30,10 +30,10 @@ public class ArquivoManager {
     }
 	
 	//Método de gravação das transações no arquivo
-   public static void gravarArquivoTransacao(TransacaoManager tm){
+   public static void gravarArquivoTransacao(TransacaoManager tm, String nomeArquivo){
 	   try {
 		writer = new BufferedWriter(
-				   new OutputStreamWriter(new FileOutputStream("arquivoTransacao.txt"), "utf-8"));
+		new OutputStreamWriter(new FileOutputStream(nomeArquivo + ".txt"), "utf-8"));
 		writer.write(tm.toString());
 		writer.close();
 	} catch (UnsupportedEncodingException e) {
@@ -49,9 +49,9 @@ public class ArquivoManager {
 	   
    }
    //Método de gravação do schedule gerado
-   public static void gravarSchedule(Schedule s) {
+   public static void gravarSchedule(Schedule s, String nomeArquivo) {
 	   try {
-		writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("arquivoSchedule.txt"), "utf-8"));
+		writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nomeArquivo+".txt"), "utf-8"));
 		writer.write(s.getItemdado() +", "+ s.getTransacao()+ ", " + s.getAcesso()+ "\n");
 	    writer.write(s.toString());
 		writer.close();
@@ -69,11 +69,14 @@ public class ArquivoManager {
 	   
    }
    //Método de leitura do arquivo de transações que retorna uma lista linkada de transacoes
-   public static LinkedList<Transacao> lerArquivoTransacao(){
+   public static LinkedList<Transacao> lerArquivoTransacao(String nomeArquivo){
 	   LinkedList<Transacao> transacoes = new LinkedList<>();
 	   List<String> linhas = new ArrayList<>();
 	   try {
-		linhas = Files.readAllLines(Paths.get("arquivoTransacao.txt", ""));
+		linhas = Files.readAllLines(Paths.get(nomeArquivo+".txt", ""));
+		
+		String temp = linhas.get(0);
+		
 		linhas.remove(0);
 	} catch (IOException e) {
 		e.printStackTrace();
@@ -126,6 +129,19 @@ public class ArquivoManager {
 	   }
 	   
 	   return transacoes;
+   }
+   
+   public static String getCabecalho(String nomeArquivo) {
+	List<String> linha;
+	String temp = null;
+	try {
+		linha = Files.readAllLines(Paths.get(nomeArquivo+".txt", ""));
+		temp = linha.get(0);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return temp;
    }
    
  }

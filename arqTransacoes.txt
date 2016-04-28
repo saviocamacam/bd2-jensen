@@ -1,0 +1,12 @@
+26, 11, 6
+T1: S1; W1(G); R1(X); R1(A); W1(K); W1(Q); W1(C); E1;
+T2: S2; W2(T); W2(Q); W2(M); R2(Y); R2(U); R2(K); E2;
+T3: S3; R3(W); W3(C); W3(T); R3(I); R3(D); W3(B); E3;
+T4: S4; R4(O); W4(W); R4(C); W4(O); R4(I); W4(P); E4;
+T5: S5; W5(J); W5(U); W5(B); R5(Q); W5(O); R5(J); E5;
+T6: S6; W6(Z); R6(O); W6(Y); R6(M); R6(I); W6(W); E6;
+T7: S7; R7(C); W7(N); W7(X); R7(R); R7(Y); W7(W); E7;
+T8: S8; R8(I); R8(F); R8(C); W8(X); R8(B); W8(I); E8;
+T9: S9; W9(N); W9(J); R9(S); R9(E); R9(Z); R9(B); E9;
+T10: S10; W10(Q); W10(J); R10(U); W10(N); W10(O); R10(M); E10;
+T11: S11; W11(E); W11(B); R11(A); R11(F); W11(S); W11(L); E11;
