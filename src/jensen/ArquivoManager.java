@@ -14,10 +14,8 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 
 
@@ -74,9 +72,7 @@ public class ArquivoManager {
 	   List<String> linhas = new ArrayList<>();
 	   try {
 		linhas = Files.readAllLines(Paths.get(nomeArquivo+".txt", ""));
-		
-		String temp = linhas.get(0);
-		
+				
 		linhas.remove(0);
 	} catch (IOException e) {
 		e.printStackTrace();

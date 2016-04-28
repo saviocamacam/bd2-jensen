@@ -28,7 +28,6 @@ public class Schedule {
 	}
 	
 	public void cabecalho(String linha0) {
-		int indiceBarraN = linha0.indexOf('\n');
 		String[] temp2 = linha0.substring(0).split(", ");
 		this.acesso = Integer.parseInt(temp2[2].toString());
 		this.itemdado = Integer.parseInt(temp2[0].toString());

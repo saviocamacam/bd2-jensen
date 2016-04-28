@@ -2,7 +2,6 @@ package jensen;
 
 import java.io.IOException;
 import java.util.LinkedList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Jensen {
@@ -42,6 +41,7 @@ public class Jensen {
     			LinkedList<Transacao> list = ArquivoManager.lerArquivoTransacao(nomeArquivo);
     			System.out.println("Nome do arquivo de Schedule (destino)");
     			Schedule s = new Schedule(list);
+    			
     			s.cabecalho(ArquivoManager.getCabecalho(nomeArquivo));
     			
     			nomeArquivo = new Scanner(System.in).next();
