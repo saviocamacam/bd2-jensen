@@ -1,2 +1,0 @@
-26, 11, 6
-S9; S4; S8; S5; S11; W11(E); W5(J); W5(U); S7; S6; W11(B); S3; R3(W); S1; R11(A); W3(C); S2; W1(G); W6(Z); S10; R1(X); R4(O); W4(W); W2(T); R6(O); R7(C); W5(B); R11(F); R4(C); W11(S); W4(O); W3(T); R1(A); W6(Y); W10(Q); W10(J); R6(M); R8(I); W11(L); E11; R6(I); R3(I); W1(K); W2(Q); R5(Q); W9(N); W1(Q); R8(F); R8(C); R10(U); W7(N); W6(W); W2(M); W7(X); W9(J); R2(Y); R2(U); R4(I); W4(P); R7(R); R3(D); W3(B); E3; R7(Y); W7(W); R9(S); W1(C); E6; E7; R2(K); E1; E4; W10(N); E2; R9(E); R9(Z); W5(O); W10(O); W8(X); R5(J); R9(B); E9; R10(M); R8(B); W8(I); E10; E8; E5; 
