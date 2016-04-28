@@ -81,21 +81,23 @@ public class ArquivoManager {
 	   
 	   for( String s : linhas ){
 		 transacoes.add(new Transacao());
-		 String[] temp = s.substring(3).split(" ");
+		 int indiceDoisPontos = s.indexOf(':');
+		 String[] temp = s.substring(indiceDoisPontos+2).split(" ");
 		 for( String opString : temp){
 			 Operacao op = null;
 			 Acesso acesso = null;
 			 int index = 0;
 			 
 			 // verifica se start_ ou end_transaction
-			 if ( opString.length() == 3) {
+			 if ( opString.charAt(0) == 'S' || opString.charAt(0) == 'E') {
 				 if ( opString.contains("S")) {
 					 acesso = Acesso.START;
 				 } else {
 					 acesso = Acesso.END;
 				 }
-				op = new Operacao(acesso, Integer.parseInt(opString.substring(1, 2)));
-			 } else if( opString.length() > 3 ) {
+				int indicePontoVirgula = opString.indexOf(';');
+				op = new Operacao(acesso, Integer.parseInt(opString.substring(1, indicePontoVirgula)));
+			 } else {
 				
 				switch ( opString.substring(0, 1) ) {
 				case "R":
@@ -107,8 +109,12 @@ public class ArquivoManager {
 					break;
 				}
 				
-				index = Integer.parseInt(opString.substring(1, 2));
-				String dado = opString.substring(3, 4);
+				int indiceParentese = opString.indexOf('(');
+				index = Integer.parseInt(opString.substring(1, indiceParentese));
+				
+				int indiceParenteseFecha = opString.indexOf(')');
+				
+				String dado = opString.substring(indiceParentese+1, indiceParenteseFecha);
 				op = new Operacao( dado , acesso, index );
 			 }
 			 
