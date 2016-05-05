@@ -61,6 +61,8 @@ public class Jensen {
     			s.cabecalho(ArquivoManager.getCabecalho(nomeArquivo));
     			s.setScheduleinlist(list);
     			
+    			Schedule scheduleEscalonado = new Escalonador(s).escalonar(s);
+    			
     			
     			
     		}

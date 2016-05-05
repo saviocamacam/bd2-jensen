@@ -11,6 +11,7 @@ public class Escalonador {
 	public Escalonador(Schedule s) {
 		conjuntoDados = new LinkedList<>();
 		scheduleEscalonado = new Schedule();
+		conjuntoTransacoes = new LinkedList<>();
 		escalonar(s);
 	}
 	
