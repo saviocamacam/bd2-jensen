@@ -4,23 +4,30 @@ package jensen;
 
 public class Operacao {
 	
-	private String dado;
+	private String dadoNome;
 	private Acesso acesso;
 	private int index;
+	private Dado dado;
 	
-	public Operacao(String dado, Acesso acesso, int index) {
-		this.dado = dado;
+	public Operacao(String dadoNome, Acesso acesso, int index) {
+		//this.dadoNome = dadoNome;
 		this.acesso = acesso;
 		this.index = index;
+		this.dado = new Dado(dadoNome);
 	}
 	
 	public Operacao(Acesso acesso, int index){
-		this.dado = null;
+		//this.dado.setNome(null);
 		this.acesso = acesso;
 		this.index = index;
+		this.dado = new Dado(null);
 	}
 
-	public String getDado() {
+	public String getDadoNome() {
+		return dado.getNome();
+	}
+	
+	public Dado getDado() {
 		return dado;
 	}
 
@@ -36,8 +43,8 @@ public class Operacao {
 	public String toString() {
 		String operacao = "";
 		operacao += acesso.toString() + index;
-		if( dado != null )
-			operacao += "(" + dado + ");";
+		if( dado.getNome() != null )
+			operacao += "(" + dado.getNome() + ");";
 		else
 			operacao += ";";
 		

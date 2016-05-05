@@ -57,9 +57,11 @@ public class Jensen {
     			
     			LinkedList<Operacao> list = ArquivoManager.lerArquivoSchedule(nomeArquivo);
     		
-    			Schedule s = new Schedule(nomeArquivo);
-    			s.setScheduleinlist(list);
+    			Schedule s = new Schedule();
     			s.cabecalho(ArquivoManager.getCabecalho(nomeArquivo));
+    			s.setScheduleinlist(list);
+    			
+    			
     			
     		}
     		

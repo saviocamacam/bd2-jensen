@@ -80,6 +80,7 @@ public class ArquivoManager {
 	   for( String s : linhas ){
 		 transacoes.add(new Transacao());
 		 int indiceDoisPontos = s.indexOf(':');
+		 
 		 String[] temp = s.substring(indiceDoisPontos+2).split(" ");
 		 for( String opString : temp){
 			 Operacao op = null;
@@ -148,32 +149,44 @@ public class ArquivoManager {
 			e.printStackTrace();
 		}
 		
-		String[] vectOperacoes = linhas.get(1).substring(0).split(" ");
+		String[] vectOperacoes = linhas.get(0).substring(0).split(" ");
 		for(String s : vectOperacoes) {
 			Operacao op = null;
 			Acesso acesso = null;
 			int index = 0;
-			
-			switch( s.charAt(0)) {
-			case 'R':
-				acesso = Acesso.READ;
-				break;
-			case 'W':
-				acesso = Acesso.WRITE;
-			default:
-				break;
-			}
-			int indiceParentese = s.indexOf('(');
-			index = Integer.parseInt(s.substring(1, indiceParentese));
-			
-			int indiceParenteseFecha = s.indexOf(')');
-			
-			String dado = s.substring(indiceParentese+1, indiceParenteseFecha);
-			op = new Operacao( dado , acesso, index );
-			operacoes.add(op);
+			if ( s.charAt(0) == 'S' || s.charAt(0) == 'E') {
+				 if ( s.contains("S")) {
+					 acesso = Acesso.START;
+				 } else {
+					 acesso = Acesso.END;
+				 }
+				int indicePontoVirgula = s.indexOf(';');
+				op = new Operacao(acesso, Integer.parseInt(s.substring(1, indicePontoVirgula)));
+				operacoes.add(op);
+			 } 
+			else {
+				switch( s.charAt(0)) {
+				case 'R':
+					acesso = Acesso.READ;
+					break;
+				case 'W':
+					acesso = Acesso.WRITE;
+					break;
+				default:
+					break;
+				}
+				int indiceParentese = s.indexOf('(');
+				index = Integer.parseInt(s.substring(1, indiceParentese));
+				
+				int indiceParenteseFecha = s.indexOf(')');
+				
+				String dado = s.substring(indiceParentese+1, indiceParenteseFecha);
+				op = new Operacao( dado , acesso, index );
+				operacoes.add(op);
+			 }
 		}
 		
-		return null;
+		return operacoes;
 	}
    
  }

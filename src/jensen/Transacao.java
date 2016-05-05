@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 public class Transacao {
 	private String labelTransacao;
     private LinkedList<Operacao> filaOperacoes;
-    
+    private LinkedList<Dado> conjuntoDados;
     private static int index=0;
     
     public Transacao() {
@@ -17,6 +17,10 @@ public class Transacao {
 		filaOperacoes = new LinkedList<>();
 		labelTransacao += "T";
 	}
+    
+    public Transacao(Integer index) {
+    	this.index = index;
+    }
 
 	public Transacao(ListaDados dados, int numeroAcessos) {
     	index++;
@@ -71,11 +75,20 @@ public class Transacao {
 	
 	public boolean transIsEmpty(){
 		return filaOperacoes.isEmpty();
-		
 	}
 	
 	public Operacao getFirstOp() {
 		return filaOperacoes.getFirst();
+	}
+	
+	public boolean containsDado(Dado dado) {
+		if(conjuntoDados.contains(dado))
+			return true;
+		else return false;
+	}
+	
+	public void addDado(Dado dado) {
+		conjuntoDados.add(dado);
 	}
 
 	@Override
@@ -89,6 +102,4 @@ public class Transacao {
 		transacao = transacao + '\n';
 		return transacao;
 	}
-
-	
 }

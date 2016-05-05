@@ -10,10 +10,13 @@ public class Schedule {
 	private int acesso;
 	
 	public Schedule(String nomeArquivo) {
-		
 		LinkedList<Transacao> transacao = ArquivoManager.lerArquivoTransacao(nomeArquivo);
 		scheduleinlist = new LinkedList<>();
 		ligaOperacoes(transacao);
+	}
+	
+	public Schedule() {
+		scheduleinlist = new LinkedList<>();
 	}
 	
 	private void ligaOperacoes(LinkedList<Transacao> listaTransacao) {
