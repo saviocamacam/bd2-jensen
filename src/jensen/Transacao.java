@@ -11,6 +11,7 @@ public class Transacao {
     private LinkedList<Operacao> filaOperacoes;
     private LinkedList<Dado> conjuntoDados;
     private static int index=0;
+    private int indexNovo;
     
     public Transacao() {
 		super();
@@ -19,7 +20,8 @@ public class Transacao {
 	}
     
     public Transacao(Integer index) {
-    	this.index = index;
+    	this.indexNovo = index;
+    	this.conjuntoDados = new LinkedList<>();
     }
 
 	public Transacao(ListaDados dados, int numeroAcessos) {
@@ -88,7 +90,8 @@ public class Transacao {
 	}
 	
 	public void addDado(Dado dado) {
-		conjuntoDados.add(dado);
+		Dado novoDado = new Dado(dado.getNome());
+		conjuntoDados.add(novoDado);
 	}
 
 	@Override
@@ -101,5 +104,14 @@ public class Transacao {
 		
 		transacao = transacao + '\n';
 		return transacao;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		return this.indexNovo == ((Transacao)o).indexNovo;
+	}
+
+	public LinkedList<Dado> getConjuntoDados() {
+		return conjuntoDados;
 	}
 }
