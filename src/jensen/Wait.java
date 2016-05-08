@@ -7,5 +7,13 @@ public class Wait {
 		this.indice = indice;
 		this.bloqueio = bloqueio;
 	}
+	public Wait(Integer indice) {
+		this.indice = indice;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		return this.indice == ((Wait) o).indice;
+	}
 
 }

@@ -4,7 +4,7 @@ package jensen;
 
 public class Operacao {
 	
-	private String dadoNome;
+	//private String dadoNome;
 	private Acesso acesso;
 	private int index;
 	private Dado dado;

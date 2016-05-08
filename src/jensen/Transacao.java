@@ -114,4 +114,8 @@ public class Transacao {
 	public LinkedList<Dado> getConjuntoDados() {
 		return conjuntoDados;
 	}
+
+	public int getIndexNovo() {
+		return indexNovo;
+	}
 }

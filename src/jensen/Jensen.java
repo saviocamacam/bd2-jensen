@@ -10,26 +10,28 @@ public class Jensen {
     static int nro_transacoes;
     static int nro_acessos;
     static String nomeArquivo;
+	private static Scanner scanner;
     //Necessário ainda criar métodos de reset ao final de entradas e geração de schedules
     public static void main(String[] args) throws IOException {
     	do {
     		System.out.println("(1) Gerar transacoes: \n(2) Gerar Schedule:\n(3) Escalonar Schedule:\n");
-    		opcao = new Scanner(System.in).nextInt();
+    		scanner = new Scanner(System.in);
+			opcao = scanner.nextInt();
     		if(opcao == 1) {
     			System.out.println("Quantos itens de dados devem ser criados? ");
-    	    	nro_itens = new Scanner(System.in).nextInt();
+    	    	nro_itens = scanner.nextInt();
     	    	while (nro_itens > 26) {
     	    		System.out.println("Informe valor menor ou igual a 26\n");
-    	    		nro_itens = new Scanner(System.in).nextInt();
+    	    		nro_itens = scanner.nextInt();
     	    	}
     	    	System.out.println("Quantas transacoes: ");
-    	        nro_transacoes = new Scanner(System.in).nextInt();
+    	        nro_transacoes = scanner.nextInt();
     	        System.out.println("Quantos acessos: ");
-    	        nro_acessos = new Scanner(System.in).nextInt();
+    	        nro_acessos = scanner.nextInt();
     	        
     	        TransacaoManager tm = new TransacaoManager(nro_itens, nro_transacoes, nro_acessos);
     	        System.out.println("Nome do arquivo de Transações (destino)");
-    	        nomeArquivo = new Scanner(System.in).next();
+    	        nomeArquivo = scanner.next();
     	        
     	        ArquivoManager.gravarArquivoTransacao(tm, nomeArquivo);
     	        /* Os parâmetros do usuário são enviados para a classe TransacaoManager que gerencia a criação de transações retornando uma listas delas.
@@ -37,14 +39,14 @@ public class Jensen {
     	    	
     		} else if (opcao == 2) {
     			System.out.println("Nome do arquivo de Transações (fonte)");
-    			nomeArquivo = new Scanner(System.in).next();
+    			nomeArquivo = scanner.next();
     			Schedule s = new Schedule(nomeArquivo);
     			s.cabecalho(ArquivoManager.getCabecalho(nomeArquivo));
     			
     			//LinkedList<Transacao> list = ArquivoManager.lerArquivoTransacao(nomeArquivo);
     			
     			System.out.println("Nome do arquivo de Schedule (destino)");
-    			nomeArquivo = new Scanner(System.in).next();
+    			nomeArquivo = scanner.next();
     			
     			ArquivoManager.gravarSchedule(s, nomeArquivo);
     	        
@@ -53,18 +55,23 @@ public class Jensen {
     			 * Depois de gerado o schedule sorteado é feita a gravação com método da classe de gerenciamento de arquivos */
     		} else if (opcao == 3) {
     			System.out.println("Nome do arquivo de Schedule (fonte):");
-    			nomeArquivo = new Scanner(System.in).next();
+    			nomeArquivo = scanner.next();
     			
     			LinkedList<Operacao> list = ArquivoManager.lerArquivoSchedule(nomeArquivo);
     		
     			Schedule s = new Schedule();
     			s.cabecalho(ArquivoManager.getCabecalho(nomeArquivo));
     			s.setScheduleinlist(list);
-    			
-    			Schedule scheduleEscalonado = new Escalonador(s).escalonar(s);
-    			
-    			
-    			
+    			Escalonador e = new Escalonador();
+    			Schedule scheduleEscalonado = e.escalonar(s);
+    			if(e.getFlagEscalonador() == 1) {
+    				System.out.println("Nome do arquivo de Schedule Escalonado (destino)");
+        			nomeArquivo = scanner.next();
+        			ArquivoManager.gravarSchedule(scheduleEscalonado, nomeArquivo);
+    			}
+    			else {
+    				
+    			}
     		}
     		
     	} while (opcao != 4);

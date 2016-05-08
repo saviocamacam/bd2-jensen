@@ -13,7 +13,7 @@ public class Dado {
 	public Dado(String nomeDado) {
 		this.nome = nomeDado;
 		this.lockS = new LinkedList<>();
-		//this.lockX = null;
+		this.lockX = -1;
 		this.listaWait = new LinkedList<>();
 		this.estado = 'U';
 	}
@@ -63,6 +63,10 @@ public class Dado {
 
 	public void addLockS(Integer indice) {
 		lockS.add(indice); 
+	}
+	
+	public void removeLockS(Integer indice) {
+		lockS.remove(indice);
 	}
 	
 	public void addLockX(Integer indice) {
