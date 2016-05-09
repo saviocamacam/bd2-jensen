@@ -33,7 +33,6 @@ public class Transacao {
         filaOperacoes.add(new Operacao(Acesso.START, indice));
         randomOp(filaOperacoes, dados.getDados(), numeroAcessos);
         filaOperacoes.add(new Operacao(Acesso.END, indice));
-
 	}
 	
 	private void randomOp(LinkedList<Operacao> filaOperacoes, LinkedList<Dado> conjunto, int nro_acessos) {

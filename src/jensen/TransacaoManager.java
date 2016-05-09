@@ -1,6 +1,4 @@
-/* Essa classe recebe os parâmetros gerais de criação de transações
- * 
- */
+/* Essa classe recebe os parâmetros gerais de criação de transações*/
 package jensen;
 
 import java.util.LinkedList;

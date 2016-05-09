@@ -18,7 +18,7 @@ public class Schedule {
 	public Schedule() {
 		scheduleinlist = new LinkedList<>();
 	}
-	
+	//método que sorteia as operações no schedule retirando uma a uma das transacoes
 	private void ligaOperacoes(LinkedList<Transacao> listaTransacao) {
 		Random r = new Random();
 		while( !listaTransacao.isEmpty() ){

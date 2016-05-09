@@ -8,7 +8,7 @@ public class Operacao {
 	private Acesso acesso;
 	private int index;
 	private Dado dado;
-	private int flagLoopWait;
+	private int flagLoopWait; //essa variável indica a liberação ou não da retirada de um indice e uma operação da lista de espera
 	
 	public Operacao(String dadoNome, Acesso acesso, int index) {
 		//this.dadoNome = dadoNome;

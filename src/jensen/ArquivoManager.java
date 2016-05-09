@@ -1,8 +1,5 @@
-/*
-Classe responsável pela gravação e leitura de arquivos
- */
+/*Classe responsável pela gravação e leitura de arquivos*/
 package jensen;
-
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -17,8 +14,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-
-
 /*@author savio*/
 public class ArquivoManager {
     private static Writer writer;
@@ -27,7 +22,7 @@ public class ArquivoManager {
         
     }
 	
-	//Método de gravação das transações no arquivo
+	//Gravação das transações no arquivo
    public static void gravarArquivoTransacao(TransacaoManager tm, String nomeArquivo){
 	   try {
 		writer = new BufferedWriter(
@@ -46,7 +41,7 @@ public class ArquivoManager {
 	}
 	   
    }
-   //Método de gravação do schedule gerado
+   //Gravação do schedule gerado
    public static void gravarSchedule(Schedule s, String nomeArquivo) {
 	   try {
 		writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nomeArquivo+".txt"), "utf-8"));
@@ -63,9 +58,9 @@ public class ArquivoManager {
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
-}
-   
-public static void gravarScheduleEscalonado(Schedule s, String nomeArquivo) {
+   }
+   //grava o schedule escalonado
+   public static void gravarScheduleEscalonado(Schedule s, String nomeArquivo) {
 		   try {
 			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nomeArquivo+".txt"), "utf-8"));
 		    writer.write(s.toString());
@@ -80,10 +75,8 @@ public static void gravarScheduleEscalonado(Schedule s, String nomeArquivo) {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	   
-	   
    }
-   //Método de leitura do arquivo de transações que retorna uma lista linkada de transacoes
+   //Leitura do arquivo de transações que retorna uma lista linkada de transacoes - retorna uma lista de transacoes
    public static LinkedList<Transacao> lerArquivoTransacao(String nomeArquivo){
 	   LinkedList<Transacao> transacoes = new LinkedList<>();
 	   List<String> linhas = new ArrayList<>();
@@ -143,7 +136,7 @@ public static void gravarScheduleEscalonado(Schedule s, String nomeArquivo) {
 	   
 	   return transacoes;
    }
-   
+   //Recupera informações do schedule, tao como numero de transacoes, acessos e itens de dado - retorna uma string
    public static String getCabecalho(String nomeArquivo) {
 	List<String> linha;
 	String temp = null;
@@ -155,7 +148,7 @@ public static void gravarScheduleEscalonado(Schedule s, String nomeArquivo) {
 	}
 	return temp;
    }
-
+   //Leitura do arquivo de schedule para escalonamento - retorna uma lista de operações
 	public static LinkedList<Operacao> lerArquivoSchedule(String nomeArquivo) {
 		LinkedList<Operacao> operacoes = new LinkedList<>();
 		List<String> linhas = new ArrayList<>();

@@ -1,3 +1,4 @@
+/*Classe responsável pelo escalonamento*/
 package jensen;
 
 import java.util.LinkedList;
@@ -8,8 +9,8 @@ public class Escalonador {
 	private LinkedList<Operacao> operacoesEspera;
 	private LinkedList<Dado> conjuntoDados;
 	private LinkedList<Transacao> conjuntoTransacoes;
-	private int flagEscalonador = -1;
-	private int sizeOperacoesEspera = -1;
+	private int flagEscalonador = -1; //0: schedule não escalonado / 1: schedule escalonado
+	private int sizeOperacoesEspera = -1; //variável de contagem dos objetos em espera para verificação a cada nova atribuição com o término da lista de operações
 	
 	public Escalonador() {
 		conjuntoDados = new LinkedList<>();
@@ -21,17 +22,18 @@ public class Escalonador {
 	}
 	/*O funcionamento do escalonador trata do consumo dos itens da lista de operações capturada no arquivo de schedule e cada item (operacao) tem
 	 * uma função a ser executada:
-	 * Tipo S indica que uma transacao foi criada, assim eu crio todos os objetos de transacao que precisam ser gerenciados.
+	 * Tipo S indica que uma transacao foi criada, assim são criados todos os objetos de transacao que precisam ser gerenciados.
 	 * Tipo R ou W aqueles que precisam ser ordenados de acordo com a politica de escalonamento
 	 * Tipo E indica que uma transacao deve ser submetida ao Commit e com ele começa a busca pelas esperas em todos os itens de dados
 	 * coletados com o consumo desses itens na lista.
 	 * Enquanto a lista de operações não se esgota com o consumo dos itens, indica que há itens a serem escalonados. Itens que conseguiram ser
-	 * escalonados se tornam outra lista e os que não conseguiram se tornam outra e o loop fica se repetindo até não sobrar ninguem ou se
+	 * escalonados se tornam uma lista nova e os que não conseguiram se tornam outra e a cada vez que o s.scheduleInList se esgota
+	 * a lista de operações em espera é atribuida a ele e o loop fica se repetindo até não sobrar ninguem ou se
 	 * se repetir por duas vezes, o que indica o deadlock e o conjunto de transacoes que sobra são as que estão em espera.
 	 * */
 	public Schedule escalonar(Schedule s) {
 		while(!s.getScheduleinlist().isEmpty()) {
-			Operacao o  = s.getScheduleinlist().remove();
+			Operacao o  = s.getScheduleinlist().remove(); //consumo dos itens
 				if(o.getAcesso() == Acesso.START) {
 					conjuntoTransacoes.add(new Transacao(o.getIndex()));
 				}
@@ -161,7 +163,7 @@ public class Escalonador {
 	public int getFlagEscalonador() {
 		return flagEscalonador;
 	}
-	
+	//Verifica se a quantidade de operações em espera é igual a anterior: true indica deadlock ; false: indica fluxo normal
 	private boolean waitOperationsSizeEqual(LinkedList<Operacao> operacoesEspera2) {
 		if(sizeOperacoesEspera == operacoesEspera2.size()) {
 			return true;
@@ -171,7 +173,7 @@ public class Escalonador {
 			return false;
 		}
 	}
-
+	//método de retirada do indice que está sendo comitado das listas e variaveis de bloqueio dos dados
 	private boolean unlockData(int index) {
 		while(!conjuntoTransacoes.get(getIndiceTransacao(index)).getConjuntoDados().isEmpty()) {
 			Dado dado = conjuntoTransacoes.get(getIndiceTransacao(index)).getConjuntoDados().remove();
@@ -190,44 +192,44 @@ public class Escalonador {
 		}
 		return true;
 	}
-
+	//verifica se bloqueio esclusivo de um dado corresponde ao indice de uma mesma transacao
 	private boolean meuBloqueioExclusivo(Dado dado, int index) {
 		if(conjuntoDados.get(getIndiceDado(dado)).getLockX() == index)
 			return true;
 		else return false;
 	}
-
+	//retorna true ou false para lista wait
 	private boolean listaEsperaVazia(Dado dado) {
 		if(conjuntoDados.get(getIndiceDado(dado)).getListaWait().isEmpty()) {
 			return true;
 		}
 		else return false;
 	}
-
+	//verifica se um indice está na lista de compartilhamento de um dado
 	public boolean contemIndice(Dado dado, int indice) {
 		if(conjuntoDados.get(getIndiceDado(dado)).getLockS().contains(indice)){
 			return true;
 		}
 		else return false;
 	}
-	
+	//retorna o estado de um dado
 	public char getEstado(Dado dado) {
 		return conjuntoDados.get(getIndiceDado(dado)).getEstado();
 	}
-
+	//eleva o bloqueio de um dado de compartilhado para exclusivo
 	private void upgradeLock(Dado dado, int indice) {
 		dado.getLockS().remove();
 		dado.setLockX(indice);
 		dado.setEstado('X');
 	}
-
+	//verifica se o unico indice que tem o bloqueio compartilhado é igual ao indice testado
 	private boolean onlyMeLockS(Dado dado, int indice) {
 		if(conjuntoDados.get(getIndiceDado(dado)).getLockS().size() == 1 && conjuntoDados.get(getIndiceDado(dado)).getLockS().getLast() == indice) {
 			return true;
 		}
 		return false;
 	}
-
+	//verifica se um indice está na lista de espera de algum item de dado
 	private boolean isWait(int indice) {
 		for(Dado d : conjuntoDados) {
 			if(d.getListaWait().contains(new Wait(indice))) {
@@ -236,18 +238,18 @@ public class Escalonador {
 		}
 		return false;
 	}
-	
+	//verifica se um dado está desbloqueado
 	private boolean isUnlock(Dado dado) {
 		if(conjuntoDados.get(getIndiceDado(dado)).getEstado() == 'U') {
 			return true;
 		}
 		else return false;
 	}
-	
+	//retorna a posicao real, numa lista de transacoes, de uma transacao - não é o indice lógico da transacao
 	private int getIndiceTransacao(int indiceObjeto) {
 		return conjuntoTransacoes.indexOf(new Transacao(indiceObjeto));
 	}
-	
+	//retorna a posicao real, numa lista de dados, de um dado
 	private int getIndiceDado(Dado dado) {
 		return conjuntoDados.indexOf(dado);
 	}

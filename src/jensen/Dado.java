@@ -4,10 +4,10 @@ import java.util.LinkedList;
 
 public class Dado {
 	private String nome;
-	private LinkedList<Integer> lockS;
-	private int lockX;
-	private LinkedList<Wait> listaWait;
-	private char estado;
+	private LinkedList<Integer> lockS; //lista de indices que compartilham esse dado
+	private int lockX; //indice da transacao que obtem o bloqueio exclusivo
+	private LinkedList<Wait> listaWait; //Lista de itens em espera pelo dado
+	private char estado; //Atributo usado no escalonamento
 	
 	public Dado(String nomeDado) {
 		this.nome = nomeDado;
