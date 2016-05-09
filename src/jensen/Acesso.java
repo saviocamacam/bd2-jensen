@@ -1,7 +1,6 @@
 /*Classe responsávelo pela retorno dos tipos de acessos*/
 package jensen;
 /*@author savio*/
-
 public enum Acesso {
     READ("R"),
     WRITE("W"),

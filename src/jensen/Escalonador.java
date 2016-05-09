@@ -19,7 +19,16 @@ public class Escalonador {
 		operacoesEspera = new LinkedList<>();
 		new LinkedList<>();
 	}
-	
+	/*O funcionamento do escalonador trata do consumo dos itens da lista de operações capturada no arquivo de schedule e cada item (operacao) tem
+	 * uma função a ser executada:
+	 * Tipo S indica que uma transacao foi criada, assim eu crio todos os objetos de transacao que precisam ser gerenciados.
+	 * Tipo R ou W aqueles que precisam ser ordenados de acordo com a politica de escalonamento
+	 * Tipo E indica que uma transacao deve ser submetida ao Commit e com ele começa a busca pelas esperas em todos os itens de dados
+	 * coletados com o consumo desses itens na lista.
+	 * Enquanto a lista de operações não se esgota com o consumo dos itens, indica que há itens a serem escalonados. Itens que conseguiram ser
+	 * escalonados se tornam outra lista e os que não conseguiram se tornam outra e o loop fica se repetindo até não sobrar ninguem ou se
+	 * se repetir por duas vezes, o que indica o deadlock e o conjunto de transacoes que sobra são as que estão em espera.
+	 * */
 	public Schedule escalonar(Schedule s) {
 		while(!s.getScheduleinlist().isEmpty()) {
 			Operacao o  = s.getScheduleinlist().remove();

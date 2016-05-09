@@ -1,3 +1,4 @@
+/*Objeto composto dos campos necessários para salvamento das operações em espera com o índice e o tipo de bloqueio*/
 package jensen;
 
 public class Wait {

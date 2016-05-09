@@ -1,7 +1,6 @@
 package jensen;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class Dado {
 	private String nome;
@@ -52,27 +51,27 @@ public class Dado {
 	public void setListaWait(LinkedList<Wait> listaWait) {
 		this.listaWait = listaWait;
 	}
-
+	
 	public char getEstado() {
 		return estado;
 	}
-
+	//altera o estado do dado
 	public void setEstado(char estado) {
 		this.estado = estado;
 	}
-
+	//adiciona no bloqueio compartilhado
 	public void addLockS(Integer indice) {
 		lockS.add(indice); 
 	}
-	
+	//remove do bloqueio compartilhado
 	public void removeLockS(Integer indice) {
 		lockS.remove(indice);
 	}
-	
+	//adiciona transacao com bloqueio exclusivo
 	public void addLockX(Integer indice) {
 		lockX = indice; 
 	}
-
+	//adiciona transacoes na lista de espera
 	public void addListaWait(Integer indice, char bloqueio) {
 		listaWait.add(new Wait(indice, bloqueio));
 	}
