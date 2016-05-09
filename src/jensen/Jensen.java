@@ -14,7 +14,7 @@ public class Jensen {
 	
     public static void main(String[] args) throws IOException {
     	do {
-    		System.out.println("(1) Gerar transacoes: \n(2) Gerar Schedule:\n(3) Escalonar Schedule:\n");
+    		System.out.println("(1) Gerar transacoes: \n(2) Gerar Schedule:\n(3) Escalonar Schedule:\n(4) Sair");
     		scanner = new Scanner(System.in);
 			opcao = scanner.nextInt();
     		if(opcao == 1) {
