@@ -35,8 +35,9 @@ public class Escalonador {
 						operacoesEscalonadas.add(o);
 					}
 					else {
-						if(conjuntoDados.get(getIndiceDado(o.getDado())).getListaWait().contains(new Wait(o.getIndex(), 'R'))){
+						if(conjuntoDados.get(getIndiceDado(o.getDado())).getListaWait().contains(new Wait(o.getIndex(), 'R')) && o.getFlagLoopWait() == 1){
 							conjuntoDados.get(getIndiceDado(o.getDado())).getListaWait().remove(new Wait(o.getIndex(), 'R'));
+							o.setFlagLoopD();
 						}
 						if(getEstado(o.getDado()) == 'S' || getEstado(o.getDado()) == 'U') {
 							if(!contemIndice(o.getDado(),o.getIndex()))
@@ -54,6 +55,7 @@ public class Escalonador {
 							}
 							else {
 								conjuntoDados.get(getIndiceDado(o.getDado())).addListaWait(o.getIndex(), 'S');
+								o.setFlagLoopE();
 								operacoesEspera.add(o);
 							}
 						}
@@ -68,8 +70,9 @@ public class Escalonador {
 						operacoesEscalonadas.add(o);
 					}
 					else {
-						if(conjuntoDados.get(getIndiceDado(o.getDado())).getListaWait().contains(new Wait(o.getIndex(), 'W'))){
+						if(conjuntoDados.get(getIndiceDado(o.getDado())).getListaWait().contains(new Wait(o.getIndex(), 'W')) && o.getFlagLoopWait() == 1){
 							conjuntoDados.get(getIndiceDado(o.getDado())).getListaWait().remove(new Wait(o.getIndex(), 'W'));
+							o.setFlagLoopD();
 						}
 						if(isUnlock(o.getDado()) && listaEsperaVazia(o.getDado())) {
 							conjuntoDados.get(getIndiceDado(o.getDado())).setEstado('X');
@@ -88,6 +91,7 @@ public class Escalonador {
 							}
 							else {
 								conjuntoDados.get(getIndiceDado(o.getDado())).addListaWait(o.getIndex(), 'W');
+								o.setFlagLoopE();
 								operacoesEspera.add(o);
 							}
 						}
@@ -96,11 +100,13 @@ public class Escalonador {
 								operacoesEscalonadas.add(o);
 							else {
 								conjuntoDados.get(getIndiceDado(o.getDado())).addListaWait(o.getIndex(), 'W');
+								o.setFlagLoopE();
 								operacoesEspera.add(o);
 							}
 						}
 						else {
 							conjuntoDados.get(getIndiceDado(o.getDado())).addListaWait(o.getIndex(), 'W');
+							o.setFlagLoopE();
 							operacoesEspera.add(o);
 						}
 					}
@@ -111,8 +117,10 @@ public class Escalonador {
 						conjuntoTransacoes.remove(getIndiceTransacao(o.getIndex()));
 						operacoesEscalonadas.add(new Operacao(Acesso.COMMIT, o.getIndex()));
 					}
-					else
+					else {
+						o.setFlagLoopE();
 						operacoesEspera.add(o);
+					}
 				}
 			if(s.getScheduleinlist().size() == 0) {
 				if(!waitOperationsSizeEqual(operacoesEspera)) {

@@ -32,7 +32,6 @@ public class Jensen {
     	        TransacaoManager tm = new TransacaoManager(nro_itens, nro_transacoes, nro_acessos);
     	        System.out.println("Nome do arquivo de Transações (destino)");
     	        nomeArquivo = scanner.next();
-    	        
     	        ArquivoManager.gravarArquivoTransacao(tm, nomeArquivo);
     	        /* Os parâmetros do usuário são enviados para a classe TransacaoManager que gerencia a criação de transações retornando uma listas delas.
     	         * Depois disso há a gravação com método implementado pela classe ArquivoManager. */

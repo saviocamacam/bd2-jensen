@@ -8,6 +8,7 @@ public class Operacao {
 	private Acesso acesso;
 	private int index;
 	private Dado dado;
+	private int flagLoopWait;
 	
 	public Operacao(String dadoNome, Acesso acesso, int index) {
 		//this.dadoNome = dadoNome;
@@ -21,6 +22,18 @@ public class Operacao {
 		this.acesso = acesso;
 		this.index = index;
 		this.dado = new Dado(null);
+	}
+	
+	public void setFlagLoopE() {
+		this.flagLoopWait = 1;
+	}
+	
+	public void setFlagLoopD() {
+		this.flagLoopWait = 0;
+	}
+	
+	public int getFlagLoopWait() {
+		return flagLoopWait;
 	}
 
 	public String getDadoNome() {

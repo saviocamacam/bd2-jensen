@@ -10,6 +10,7 @@ public class TransacaoManager {
 	ListaDados dados;
     LinkedList<Transacao> listaTransacoes;
     int numeroAcessos;
+    int index;
 	
 	
 	public TransacaoManager( int numeroDados, int numeroTransacoes, int numeroAcessos) {
@@ -23,9 +24,11 @@ public class TransacaoManager {
 	private void createTransacoes(ListaDados dados, int numeroTransacoes, int numeroAcessos) {
 		
 		while( numeroTransacoes > 0 ) {
-			listaTransacoes.add(new Transacao(dados, numeroAcessos));
+			index++;
+			listaTransacoes.add(new Transacao(dados, numeroAcessos, index));
 			numeroTransacoes--;
 		}
+		index=0;
 	}
 
 	@Override
