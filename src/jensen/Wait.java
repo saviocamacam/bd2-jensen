@@ -11,6 +11,9 @@ public class Wait {
 	public Wait(Integer indice) {
 		this.indice = indice;
 	}
+	public char getBloqueio(){
+		return bloqueio;
+	}
 	
 	@Override
 	public boolean equals(Object o) {

@@ -11,7 +11,7 @@ public class Jensen {
     static int nro_acessos;
     static String nomeArquivo;
 	private static Scanner scanner;
-    //Necessário ainda criar métodos de reset ao final de entradas e geração de schedules
+	
     public static void main(String[] args) throws IOException {
     	do {
     		System.out.println("(1) Gerar transacoes: \n(2) Gerar Schedule:\n(3) Escalonar Schedule:\n");
@@ -66,10 +66,7 @@ public class Jensen {
     			if(e.getFlagEscalonador() == 1) {
     				System.out.println("Nome do arquivo de Schedule Escalonado (destino)");
         			nomeArquivo = scanner.next();
-        			ArquivoManager.gravarSchedule(scheduleEscalonado, nomeArquivo);
-    			}
-    			else {
-    				
+        			ArquivoManager.gravarScheduleEscalonado(scheduleEscalonado, nomeArquivo);
     			}
     		}
     		

@@ -63,6 +63,23 @@ public class ArquivoManager {
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
+}
+   
+public static void gravarScheduleEscalonado(Schedule s, String nomeArquivo) {
+		   try {
+			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nomeArquivo+".txt"), "utf-8"));
+		    writer.write(s.toString());
+			writer.close();
+			   
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	   
 	   
    }
