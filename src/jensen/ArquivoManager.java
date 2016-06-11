@@ -26,7 +26,7 @@ public class ArquivoManager {
    public static void gravarArquivoTransacao(TransacaoManager tm, String nomeArquivo){
 	   try {
 		writer = new BufferedWriter(
-		new OutputStreamWriter(new FileOutputStream(nomeArquivo + ".txt"), "utf-8"));
+		new OutputStreamWriter(new FileOutputStream(nomeArquivo), "utf-8"));
 		writer.write(tm.toString());
 		writer.close();
 	} catch (UnsupportedEncodingException e) {

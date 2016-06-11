@@ -1,7 +1,0 @@
-10, 6, 6
-T1: S1; R1(A); W1(C); R1(I); R1(C); W1(C); R1(F); E1;
-T2: S2; W2(D); W2(I); R2(G); W2(F); R2(C); R2(H); E2;
-T3: S3; R3(F); R3(B); W3(J); W3(I); W3(I); W3(F); E3;
-T4: S4; W4(H); W4(A); W4(C); R4(I); W4(B); W4(A); E4;
-T5: S5; W5(G); R5(C); R5(D); W5(G); W5(F); W5(F); E5;
-T6: S6; W6(D); W6(B); R6(A); W6(I); R6(F); R6(E); E6;
