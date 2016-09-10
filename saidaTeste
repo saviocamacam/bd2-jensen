@@ -1,0 +1,9 @@
+7, 8, 6
+T1: S1; R1(G); R1(D); R1(G); W1(G); R1(F); W1(E); E1;
+T2: S2; R2(G); W2(D); W2(B); W2(C); R2(G); W2(D); E2;
+T3: S3; R3(B); R3(F); W3(G); W3(A); R3(E); W3(D); E3;
+T4: S4; R4(C); R4(A); R4(G); R4(E); W4(C); R4(A); E4;
+T5: S5; W5(B); W5(C); R5(C); R5(E); R5(B); R5(F); E5;
+T6: S6; W6(D); W6(F); R6(C); W6(C); R6(A); W6(E); E6;
+T7: S7; R7(A); W7(C); R7(G); W7(A); W7(E); W7(A); E7;
+T8: S8; R8(A); W8(F); W8(D); W8(D); W8(E); W8(D); E8;

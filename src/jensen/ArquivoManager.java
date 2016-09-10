@@ -23,7 +23,7 @@ public class ArquivoManager {
     }
 	
 	//Gravação das transações no arquivo
-   public static void gravarArquivoTransacao(TransacaoManager tm, String nomeArquivo){
+   public static void gravarArquivoTransacao(TransactionManager tm, String nomeArquivo){
 	   try {
 		writer = new BufferedWriter(
 		new OutputStreamWriter(new FileOutputStream(nomeArquivo), "utf-8"));

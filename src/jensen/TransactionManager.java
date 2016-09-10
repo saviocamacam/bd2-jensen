@@ -3,7 +3,7 @@ package jensen;
 
 import java.util.LinkedList;
 
-public class TransacaoManager {
+public class TransactionManager {
 		
 	ListaDados dados;
     LinkedList<Transacao> listaTransacoes;
@@ -11,7 +11,7 @@ public class TransacaoManager {
     int index;
 	
 	
-	public TransacaoManager( int numeroDados, int numeroTransacoes, int numeroAcessos) {
+	public TransactionManager( int numeroDados, int numeroTransacoes, int numeroAcessos) {
 		dados = new ListaDados(numeroDados);
 		listaTransacoes = new LinkedList<>();
 		this.numeroAcessos = numeroAcessos;

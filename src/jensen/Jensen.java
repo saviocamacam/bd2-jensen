@@ -29,7 +29,7 @@ public class Jensen {
     	        System.out.println("Quantos acessos: ");
     	        nro_acessos = scanner.nextInt();
     	        
-    	        TransacaoManager tm = new TransacaoManager(nro_itens, nro_transacoes, nro_acessos);
+    	        TransactionManager tm = new TransactionManager(nro_itens, nro_transacoes, nro_acessos);
     	        System.out.println("Nome do arquivo de Transações (destino)");
     	        nomeArquivo = scanner.next();
     	        ArquivoManager.gravarArquivoTransacao(tm, nomeArquivo);
